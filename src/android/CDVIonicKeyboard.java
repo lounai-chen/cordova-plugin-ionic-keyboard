@@ -96,13 +96,22 @@ public class CDVIonicKeyboard extends CordovaPlugin {
                             int screenHeight;
 
                             if (Build.VERSION.SDK_INT >= 21) {
-                                Display display = cordova.getActivity().getWindowManager().getDefaultDisplay();
-                                Point size = new Point();
-                                display.getSize(size);
-                                screenHeight = size.y;
+//                                 Display display = cordova.getActivity().getWindowManager().getDefaultDisplay();
+//                                 Point size = new Point();
+//                                 display.getSize(size);
+//                                 screenHeight = size.y;
+                                screenHeight = cordova.getActivity().getWindow().getDecorView().getRootView().getHeight(); //处理键盘设置高度的bug
                             } else {
                                 screenHeight = rootViewHeight;
                             }
+                            
+                             //获取NavigationBar的高度
+//                             Resources resources = cordova.getActivity().getResources();
+//                             int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android"); 
+//                             int navbar = resources.getDimensionPixelSize(resourceId);
+//                             //获取status_bar_height的高度
+//                             int status_resourceId = resources.getIdentifier("status_bar_height", "dimen", "android"); 
+//                             int statusbar = resources.getDimensionPixelSize(status_resourceId);
 
                             int heightDiff = screenHeight - resultBottom;
 
